@@ -11,26 +11,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.warn("mount");
-    setTimeout(() => {
-      console.warn("loaded");
-      this.setState({
-        persons: [
-          {
-            id: "a123",
-            firstName: "Tirla",
-            lastName: "Andrei",
-            gitHub: "AndreiTirla",
-          },
-          {
-            id: "b654",
-            firstName: "Nicolae",
-            lastName: "Matei",
-            gitHub: "nmatei",
-          },
-        ],
+    this.load();
+  }
+
+  load() {
+    fetch("http://localhost:4000/teams-json")
+      .then((r) => r.json())
+      .then((persons) => {
+        this.setState({
+          persons: persons,
+        });
       });
-    }, 2000);
   }
 
   render() {
