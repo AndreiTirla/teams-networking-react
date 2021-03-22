@@ -1,5 +1,5 @@
-export const PersonsTable = (props) => (
-  <table border={props.border}>
+export const PersonsTable = ({ persons, border }) => (
+  <table border={border}>
     <thead>
       <tr>
         <th>First Name</th>
@@ -9,7 +9,7 @@ export const PersonsTable = (props) => (
       </tr>
     </thead>
     <tbody>
-      {props.persons.map((person, index) => (
+      {persons.map((person, index) => (
         <tr key={index}>
           <td>{person.firstName}</td>
           <td>{person.lastName}</td>
