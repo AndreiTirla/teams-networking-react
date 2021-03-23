@@ -24,13 +24,38 @@ class App extends Component {
       });
   }
 
+  add(person) {
+    console.warn("team", person);
+
+    fetch("http://localhost:4000/teams-json/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(person),
+    })
+      .then((res) => res.json())
+      .then((r) => {
+        console.warn(r);
+        if (r.success) {
+          this.load();
+        }
+      });
+  }
+
   render() {
     console.debug(this.state.persons);
     return (
       <div>
         <h1>Teams Networking</h1>
         <div>Search</div>
-        <PersonsTable persons={this.state.persons} border={1} />
+        <PersonsTable
+          persons={this.state.persons}
+          border={1}
+          onSubmit={(person) => {
+            this.add(person);
+          }}
+        />
       </div>
     );
   }
