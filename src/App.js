@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   load() {
-    fetch("http://localhost:4000/teams-json")
+    fetch("http://localhost:3000/teams-json")
       .then((r) => r.json())
       .then((persons) => {
         this.setState({
@@ -27,7 +27,7 @@ class App extends Component {
   add(person) {
     console.warn("team", person);
 
-    fetch("http://localhost:4000/teams-json/create", {
+    fetch("http://localhost:3000/teams-json/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
