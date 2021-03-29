@@ -32,10 +32,7 @@ class App extends Component {
         console.warn(r);
         if (r.success) {
           person.id = r.id;
-          this.props.dispatch({
-            type: "TEAM_ADDED",
-            person,
-          });
+          this.props.onAdd(person);
         }
       });
   }
@@ -60,7 +57,10 @@ class App extends Component {
 const mapStateToProps = (state) => ({
   teams: state.teams,
 });
+const mapDispatchToProps = (dispatch) => ({
+  onAdd: (team) => dispatch({ type: "TEAM_ADDED", team }),
+});
 
-const AppContainer = connect(mapStateToProps)(App);
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default AppContainer;
